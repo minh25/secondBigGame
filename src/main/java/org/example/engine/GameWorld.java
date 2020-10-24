@@ -11,14 +11,13 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public abstract class GameWorld {
-    private Scene gameSurface;
-    private Group sceneNodes;
     private static Timeline gameLoop;
     private final int framesPerSecond;
     private final String windowTile;
-
     private final SpriteManager spriteManager = new SpriteManager();
     private final SoundManager soundManager = new SoundManager(3);
+    private Scene gameSurface;
+    private Group sceneNodes;
 
 
     public GameWorld(final int fps, final String title) {
@@ -26,6 +25,14 @@ public abstract class GameWorld {
         windowTile = title;
 
         buildAndSetGameLoop();
+    }
+
+    protected static Timeline getGameLoop() {
+        return gameLoop;
+    }
+
+    protected static void setGameLoop(Timeline gameLoop) {
+        GameWorld.gameLoop = gameLoop;
     }
 
     protected final void buildAndSetGameLoop() {
@@ -43,7 +50,7 @@ public abstract class GameWorld {
         Timeline timeline = new Timeline();
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.getKeyFrames().add(oneFrame);
-        
+
         setGameLoop(timeline);
     }
 
@@ -89,14 +96,6 @@ public abstract class GameWorld {
 
     protected String getWindowTile() {
         return windowTile;
-    }
-
-    protected static Timeline getGameLoop() {
-        return gameLoop;
-    }
-
-    protected static void setGameLoop(Timeline gameLoop) {
-        GameWorld.gameLoop = gameLoop;
     }
 
     public SpriteManager getSpriteManager() {

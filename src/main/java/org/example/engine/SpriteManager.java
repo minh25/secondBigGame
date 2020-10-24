@@ -1,7 +1,5 @@
 package org.example.engine;
 
-import org.example.engine.Sprite;
-
 import java.util.*;
 
 public class SpriteManager {
