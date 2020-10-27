@@ -1,4 +1,4 @@
-package org.example.engine;
+package engine;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -76,6 +76,7 @@ public abstract class GameWorld {
         for (Sprite spriteA: spriteManager.getCollisionsToCheck()) {
             for (Sprite spriteB: spriteManager.getAllSprites()) {
                 if (handleCollision(spriteA, spriteB)) {
+                    //TODO
                     break;
                 }
             }

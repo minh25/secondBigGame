@@ -6,7 +6,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -46,6 +48,7 @@ public class App extends Application {
 
         frameRateMeter.start();
 
+        primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

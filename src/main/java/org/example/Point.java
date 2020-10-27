@@ -7,8 +7,8 @@ public class Point {
     protected double y;
 
     public Point() {
-        this.x = random() * 2 - 1;
-        this.y = random() * 2 - 1;
+        this.x = random() * 6 - 3;
+        this.y = random() * 6 - 3;
     }
 
     public Point(int x, int y) {

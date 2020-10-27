@@ -1,4 +1,4 @@
-package org.example.engine;
+package engine;
 
 import java.util.*;
 
@@ -20,6 +20,10 @@ public class SpriteManager {
 
     public void removeSprites(Sprite... sprites) {
         GAME_ACTORS.removeAll(Arrays.asList(sprites));
+    }
+
+    public Set<Sprite> getSpritesToBeRemoved() {
+        return CLEAN_UP_SPRITES;
     }
 
     public void addSpritesToBeRemoved(Sprite... sprites) {

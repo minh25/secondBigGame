@@ -1,4 +1,4 @@
-package org.example.engine;
+package engine;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
