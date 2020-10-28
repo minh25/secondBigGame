@@ -11,7 +11,7 @@ public abstract class Sprite {
 
     // velocity vector x, y
     public double vX = 0;
-    public double vy = 0;
+    public double vY = 0;
 
     // dead?
     public boolean isDead = false;

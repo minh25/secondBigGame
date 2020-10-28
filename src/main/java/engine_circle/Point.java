@@ -1,4 +1,4 @@
-package org.example;
+package engine_circle;
 
 import static java.lang.Math.random;
 

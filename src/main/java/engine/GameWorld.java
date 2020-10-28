@@ -67,7 +67,6 @@ public abstract class GameWorld {
     }
 
     protected void handleUpdate(Sprite sprite) {
-        //Todo
     }
 
     protected void checkCollisions() {

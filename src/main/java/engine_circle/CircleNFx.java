@@ -1,7 +1,8 @@
-package org.example;
+package engine_circle;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import org.example.v1;
 
 public class CircleNFx extends Circle {
     protected Point velocity;
@@ -10,8 +11,8 @@ public class CircleNFx extends Circle {
         this.velocity = new Point();
         this.setFill(Color.BLACK);
         this.setRadius(Math.random()*50);
-        this.setCenterX(Math.random() * (App.pref_width - 2 * this.getRadius()) + this.getRadius());
-        this.setCenterY(Math.random() * (App.pref_height - 2 * this.getRadius()) + this.getRadius());
+        this.setCenterX(Math.random() * (v1.pref_width - 2 * this.getRadius()) + this.getRadius());
+        this.setCenterY(Math.random() * (v1.pref_height - 2 * this.getRadius()) + this.getRadius());
 
         ManagerShape.circleNFxList.add(this);
     }
@@ -23,8 +24,8 @@ public class CircleNFx extends Circle {
         this.setCenterY(centerY);
         this.setRadius(Math.random() * Math.min(50,
                 Math.min(
-                        Math.min(App.pref_width - centerX, centerX),
-                        Math.min(App.pref_height - centerY, centerY))));
+                        Math.min(v1.pref_width - centerX, centerX),
+                        Math.min(v1.pref_height - centerY, centerY))));
 
         ManagerShape.circleNFxList.add(this);
     }
@@ -41,11 +42,11 @@ public class CircleNFx extends Circle {
         this.setCenterX(this.getCenterX() + velocity.x);
         this.setCenterY(this.getCenterY() + velocity.y);
 
-        if (this.getCenterX() - this.getRadius() < 0 || this.getCenterX() + this.getRadius() > App.pref_width) {
+        if (this.getCenterX() - this.getRadius() < 0 || this.getCenterX() + this.getRadius() > v1.pref_width) {
             velocity.x = -velocity.x;
         }
 
-        if (this.getCenterY() - this.getRadius() < 0 || this.getCenterY() + this.getRadius() > App.pref_height) {
+        if (this.getCenterY() - this.getRadius() < 0 || this.getCenterY() + this.getRadius() > v1.pref_height) {
             velocity.y = -velocity.y;
         }
     }

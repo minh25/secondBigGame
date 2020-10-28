@@ -1,5 +1,8 @@
 package org.example;
 
+import engine_circle.CircleNFx;
+import engine_circle.Layer;
+import engine_circle.ManagerShape;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -12,7 +15,8 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class App extends Application {
+
+public class v1 extends Application {
 
     private final long[] frameTimes = new long[100];
     private int frameTimeIndex = 0 ;
@@ -47,8 +51,6 @@ public class App extends Application {
         };
 
         frameRateMeter.start();
-
-        primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
