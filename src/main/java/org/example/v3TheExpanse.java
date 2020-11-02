@@ -76,7 +76,7 @@ public class v3TheExpanse extends GameWorld {
         });
 
         try{
-            getSoundManager().loadSoundEffects("laser", getClass().getClassLoader().getResource("C:/Users/minh0/IdeaProjects/BigGame/src/main/resources/org/example/laser_2.mp3"));
+            getSoundManager().loadSoundEffects("laser", getClass().getResource("laser_2.mp3"));
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }
