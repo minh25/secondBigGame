@@ -17,6 +17,10 @@ public class SoundManager {
     }
 
     public void loadSoundEffects(String id, URL url) {
+        if (url == null) {
+            System.out.println("Sound url is null!");
+            return;
+        }
         AudioClip sound = new AudioClip(url.toExternalForm());
         soundEffectsMap.put(id, sound);
     }

@@ -5,9 +5,9 @@ import engine.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class AppV2  extends Application {
+public class v2 extends Application {
 
-    GameWorld gameWorld = new AppV2AtomSmasher(60, "v2.0");
+    GameWorld gameWorld = new v2AtomSmasher(60, "v2.0");
 
     @Override
     public void start(Stage primaryStage) throws Exception {

@@ -17,11 +17,11 @@ import javafx.stage.Stage;
 
 import java.util.Random;
 
-public class AppV2AtomSmasher extends GameWorld {
+public class v2AtomSmasher extends GameWorld {
 
     private final static Label NUM_SPRITES_FIELD = new Label();
 
-    public AppV2AtomSmasher(int fps, String title) {
+    public v2AtomSmasher(int fps, String title) {
         super(fps, title);
     }
 
@@ -81,7 +81,7 @@ public class AppV2AtomSmasher extends GameWorld {
 
         for (int i = 0; i < numSpheres; i++) {
             Color color = Color.rgb(rnd.nextInt(255), rnd.nextInt(255), rnd.nextInt(255));
-            AppV2Atom atom = new AppV2Atom(rnd.nextInt(15) + 5, color);
+            v2Atom atom = new v2Atom(rnd.nextInt(15) + 5, color);
             Circle circle = atom.getAsCircle();
 
             atom.vX = (rnd.nextInt(2) + rnd.nextDouble()) * (rnd.nextBoolean() ? 1 : -1);
@@ -109,8 +109,8 @@ public class AppV2AtomSmasher extends GameWorld {
 
     @Override
     protected void handleUpdate(Sprite sprite) {
-        if (sprite instanceof AppV2Atom) {
-            AppV2Atom sphere = (AppV2Atom) sprite;
+        if (sprite instanceof v2Atom) {
+            v2Atom sphere = (v2Atom) sprite;
 
             sphere.update();
 
@@ -130,8 +130,8 @@ public class AppV2AtomSmasher extends GameWorld {
     @Override
     protected boolean handleCollision(Sprite spriteA, Sprite spriteB) {
         if (spriteA.collide(spriteB)) {
-            ((AppV2Atom)spriteA).implode(this);
-            ((AppV2Atom)spriteB).implode(this);
+            ((v2Atom)spriteA).implode(this);
+            ((v2Atom)spriteB).implode(this);
             getSpriteManager().addSpritesToBeRemoved(spriteA, spriteB);
             return true;
         }

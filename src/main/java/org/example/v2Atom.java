@@ -12,9 +12,9 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-public class AppV2Atom extends Sprite {
+public class v2Atom extends Sprite {
 
-    public AppV2Atom(double radius, Color fill) {
+    public v2Atom(double radius, Color fill) {
         Circle sphere = new Circle();
         sphere.setCenterX(radius);
         sphere.setCenterY(radius);
@@ -23,8 +23,8 @@ public class AppV2Atom extends Sprite {
 
         RadialGradient rgrad = new RadialGradient(0,
                                                     0.1,
-                                                    sphere.getCenterX(),
-                                                    sphere.getCenterY(),
+                                                    sphere.getCenterX() - sphere.getRadius() / 3,
+                                                    sphere.getCenterY() - sphere.getRadius() / 3,
                                                     sphere.getRadius(),
                                                     false,
                                                     CycleMethod.NO_CYCLE,
@@ -44,13 +44,13 @@ public class AppV2Atom extends Sprite {
 
     @Override
     public boolean collide(Sprite other) {
-        if (other instanceof AppV2Atom) {
-            return collide((AppV2Atom)other);
+        if (other instanceof v2Atom) {
+            return collide((v2Atom)other);
         }
         return false;
     }
 
-    private boolean collide(AppV2Atom other) {
+    private boolean collide(v2Atom other) {
         if (!node.isVisible() ||
             !other.node.isVisible() ||
             this == other) {
@@ -62,7 +62,7 @@ public class AppV2Atom extends Sprite {
         double dx = otherSphere.getTranslateX() - thisSphere.getTranslateX();
         double dy = otherSphere.getTranslateY() - thisSphere.getTranslateY();
         double distance = Math.sqrt( dx * dx + dy * dy );
-        double minDist  = otherSphere.getRadius() + thisSphere.getRadius() + 3;
+        double minDist  = otherSphere.getRadius() + thisSphere.getRadius();
 
         return (distance < minDist);
     }
