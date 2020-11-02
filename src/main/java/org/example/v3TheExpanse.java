@@ -33,7 +33,7 @@ public class v3TheExpanse extends GameWorld {
 
     v3Ship myShip = new v3Ship();
 
-    public v3TheExpanse(int fps, String title) throws Exception {
+    public v3TheExpanse(int fps, String title) {
         super(fps, title);
     }
 
@@ -48,7 +48,7 @@ public class v3TheExpanse extends GameWorld {
 
         setupInput(primaryStage);
 
-        generateManySpheres(2);
+        generateManySpheres(50);
 
         getSpriteManager().addSprites(myShip);
         getSceneNodes().getChildren().add(0, myShip.node);
@@ -80,6 +80,8 @@ public class v3TheExpanse extends GameWorld {
         } catch (Exception exception) {
             throw new RuntimeException(exception);
         }
+
+//        getSceneNodes().getChildren().add(stats);
 
     }
 

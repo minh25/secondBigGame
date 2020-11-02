@@ -4,8 +4,6 @@ import engine.Sprite;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.CacheHint;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -15,10 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +23,7 @@ public class v3Ship extends Sprite {
     private final static int NUM_DIRECTIONS = 32;
     private final static float UNIT_ANGLE_PER_FRAME = ((float) TWO_PI_DEGREES / NUM_DIRECTIONS);
     private final static int MILLIS_TURN_SHIP_180_DEGREES = 300;
-    private final static float MILLIS_PER_FRAME = (float) MILLIS_TURN_SHIP_180_DEGREES / (NUM_DIRECTIONS / 2);
+    private final static float MILLIS_PER_FRAME = (float) MILLIS_TURN_SHIP_180_DEGREES / NUM_DIRECTIONS * 2;
 
     private enum DIRECTION {
         CLOCKWISE, COUNTER_CLOCKWISE, NEITHER
@@ -50,11 +45,10 @@ public class v3Ship extends Sprite {
     FadeTransition shieldFade;
     private Circle hitBounds;
 
-    public v3Ship() throws Exception {
+    public v3Ship() {
         Image shipImage;
 
-        String file = "C:/Users/minh0/IdeaProjects/BigGame/src/main/resources/org/example/ship.png";
-        shipImage = new Image(new FileInputStream(file));
+        shipImage = new Image(getClass().getResource("ship.png").toExternalForm());
 
         stopArea.setRadius(40);
         stopArea.setStroke(Color.ORANGE);
@@ -219,15 +213,12 @@ public class v3Ship extends Sprite {
             final Node displayNode = currImage;
 
             KeyFrame oneFrame = new KeyFrame(oneFrameAmt.multiply(i),
-                    new EventHandler<ActionEvent>() {
-                        @Override
-                        public void handle(ActionEvent actionEvent) {
-                            for (v3RotatedShipImage shipImg : directionalShips) {
-                                shipImg.setVisible(false);
-                            }
-
-                            displayNode.setVisible(true);
+                    actionEvent -> {
+                        for (v3RotatedShipImage shipImg : directionalShips) {
+                            shipImg.setVisible(false);
                         }
+
+                        displayNode.setVisible(true);
                     });
             frames.add(oneFrame);
 
@@ -246,11 +237,10 @@ public class v3Ship extends Sprite {
         if (rotateShipTimeline != null) {
             rotateShipTimeline.stop();
             rotateShipTimeline.getKeyFrames().clear();
-            rotateShipTimeline.getKeyFrames().addAll(frames);
         } else {
             rotateShipTimeline = new Timeline();
-            rotateShipTimeline.getKeyFrames().addAll(frames);
         }
+        rotateShipTimeline.getKeyFrames().addAll(frames);
         rotateShipTimeline.playFromStart();
     }
 
@@ -266,7 +256,6 @@ public class v3Ship extends Sprite {
 
         if (KeyCode.DIGIT2 == keyCode) {
             m1 = new v3MisSile(9, Color.BLUE);
-            ;
             slowDownAmt = 1.3f;
             scaleBeginningMissile = 11;
         } else {
@@ -315,14 +304,11 @@ public class v3Ship extends Sprite {
             shieldFade.setCycleCount(12);
             shieldFade.setAutoReverse(true);
             shieldFade.setNode(shield);
-            shieldFade.setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    shieldOn = false;
-                    flipBook.getChildren().remove(shield);
-                    shieldFade.stop();
-                    collisionBound = hitBounds;
-                }
+            shieldFade.setOnFinished(actionEvent -> {
+                shieldOn = false;
+                flipBook.getChildren().remove(shield);
+                shieldFade.stop();
+                collisionBound = hitBounds;
             });
             shieldFade.playFromStart();
         }
